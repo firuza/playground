@@ -1,0 +1,77 @@
+<!-- Drag and drop javascript
+https://github.com/anseki/plain-draggable -->
+
+<!-- https://stackoverflow.com/questions/23091555/how-do-i-use-javascript-to-clone-an-svg-element -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Title</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+
+<body style='font-family:arial'>
+
+    <p>Double click on the component in the left pane to place it on the right pane</p>
+
+    <div id="svgDiv">
+        <!-- Components panel STARTS-->
+        <svg id="mySVG" width="200" height="500" xmlns="http://www.w3.org/2000/svg" style='background-color:lightgray; '>
+            <path id="triangle1" ondblclick="clone_component(triangle1)" d="M30 10 L10 40 L50 40 Z" fill="blue"/>
+            <path id="triangle2" ondblclick="clone_component(triangle2)" d="M80 10 L60 40 L100 40 Z" fill="red"/>
+        </svg> 
+        <!-- Components panel ENDS-->
+
+        <!-- Grid  STARTS-->
+        <!-- Grid code by pigabo (https://codepen.io/pigabo/pen/eAiLF) -->
+        <svg id="gridSVG" width="600" height="500" xmlns="http://www.w3.org/2000/svg" style='background-color:white; border:1px solid black;'>
+
+            <g id="gridRightPane">
+
+            <defs>
+                <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5" />
+                </pattern>
+                <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <rect width="100" height="100" fill="url(#smallGrid)" />
+                    <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" id="rectgrid"/>
+        </g>
+        </svg>
+        <!-- Grid  ENDS-->
+
+    </div>
+
+    <script src='https://unpkg.com/panzoom@8.7.3/dist/panzoom.min.js'></script>
+    <script>
+        var count = 1
+        var Root = gridRightPane
+
+        function clone_component(component) {
+            var newComp = component.cloneNode(true)
+            newComp.id = "newComp" + count
+            newComp.ondblclick = ""
+            var position = "translate(" + 30 + "," + 100 + ")"
+            newComp.setAttribute("transform", position)
+            Root.appendChild(newComp)
+            draggable = new PlainDraggable(document.getElementById('newComp' + count));
+            draggable.snap = {x: {step: 10}, y: {step: 10}};
+            count = count + 1
+        }
+
+        function showxy(component) {
+            alert(component.id)
+        }
+
+        var element = document.getElementById('gridRightPane')
+        panzoom(element)
+    </script>
+    <script src="plain-draggable.min.js"></script>
+
+
+</body>
+
+</html>
