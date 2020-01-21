@@ -9,16 +9,17 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 
-<body style='font-family:arial'>
+<body style='font-family:arial' onload="loadComponents()">
 
     <p>Double click on the component in the left pane to place it on the right pane</p>
     <button onclick="printListofComponents()">Display List of Compoents on the grid</button>
 
     <div id="svgDiv">
         <!-- Components panel STARTS-->
-        <svg id="mySVG" width="200" height="500" xmlns="http://www.w3.org/2000/svg" style='background-color:lightgray; '>
-            <path id="triangle1" ondblclick="clone_component(triangle1)" d="M30 10 L10 40 L50 40 Z" fill="blue"/>
-            <path id="triangle2" ondblclick="clone_component(triangle2)" d="M80 10 L60 40 L100 40 Z" fill="red"/>
+        <svg id="LeftPaneSVG" width="200" height="500" xmlns="http://www.w3.org/2000/svg" style='background-color:lightgray; '>
+
+            <!-- Place components here using javascript function loadComponents() -->
+
         </svg> 
         <!-- Components panel ENDS-->
 
@@ -49,9 +50,32 @@
     </p>
 
     <script src='https://unpkg.com/panzoom@8.7.3/dist/panzoom.min.js'></script>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
     <script>
         var count = 1
         var Root = gridRightPane
+
+        function loadComponents() {
+            var loadon = LeftPaneSVG;
+
+            //Component 1
+            const comp1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            comp1.setAttribute("id", "triangle1");
+            comp1.setAttribute("ondblclick", "clone_component(triangle1)");
+            comp1.setAttribute("d", "M30 10 L10 40 L50 40 Z");
+            comp1.setAttribute("fill", "blue");
+
+            //Component 2
+            const comp2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            comp2.setAttribute("id", "triangle2");
+            comp2.setAttribute("ondblclick", "clone_component(triangle2)");
+            comp2.setAttribute("d", "M80 10 L60 40 L100 40 Z");
+            comp2.setAttribute("fill", "red");
+
+            //Place all components on SVG
+            loadon.appendChild(comp1);
+            loadon.appendChild(comp2);
+        }
 
         function clone_component(component) {
             var newComp = component.cloneNode(true)
@@ -76,6 +100,10 @@
             }
 
             document.getElementById("listofcomponents").innerHTML = txt;
+        }
+
+        function changeColor() {
+            $('#triangle1').css({ fill: "yellow" });
         }
 
         var element = document.getElementById('gridRightPane')
