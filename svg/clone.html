@@ -62,15 +62,27 @@
             const comp1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
             comp1.setAttribute("id", "triangle1");
             comp1.setAttribute("ondblclick", "clone_component(triangle1)");
-            comp1.setAttribute("d", "M30 10 L10 40 L50 40 Z");
+            comp1.setAttribute("d", "M30 60 10 90 50 90 Z");
             comp1.setAttribute("fill", "blue");
 
             //Component 2
-            const comp2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            comp2.setAttribute("id", "triangle2");
-            comp2.setAttribute("ondblclick", "clone_component(triangle2)");
-            comp2.setAttribute("d", "M80 10 L60 40 L100 40 Z");
-            comp2.setAttribute("fill", "red");
+            const comp2triangle = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            comp2triangle.setAttribute("d", "M80 60 L60 90 L100 90 Z");
+            comp2triangle.setAttribute("fill", "red");
+
+            const comp2circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            comp2circle.setAttribute("stroke","red");
+            comp2circle.setAttribute("stroke-width","4");
+            comp2circle.setAttribute("fill","none");
+            comp2circle.setAttribute("cx","80");
+            comp2circle.setAttribute("cy","80");
+            comp2circle.setAttribute("r","30");
+
+            const comp2 = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            comp2.setAttribute("id", "comp2");
+            comp2.setAttribute("ondblclick", "clone_component(comp2)");
+            comp2.appendChild(comp2circle)
+            comp2.appendChild(comp2triangle)
 
             //Place all components on SVG
             loadon.appendChild(comp1);
