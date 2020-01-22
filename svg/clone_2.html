@@ -1,0 +1,202 @@
+<!-- https://stackoverflow.com/questions/23091555/how-do-i-use-javascript-to-clone-an-svg-element -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>SVG</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+
+<body style='font-family:arial' onload="loadComponents()">
+
+    <p>Double click on the component in the left pane to place it on the right pane</p>
+    <button onclick="printListofComponents()">Display List of Compoents on the grid</button>
+
+    <div id="svgDiv" class="row" style="margin-left: 5px;">
+        <!-- Components panel STARTS-->
+        <div id="LeftPane" class="col-sm-3" style="background-color: aquamarine; border:1px solid black;"> </div>
+        <!-- Components panel ENDS-->
+
+        <!-- Grid  STARTS-->
+        <!-- Grid code by pigabo (https://codepen.io/pigabo/pen/eAiLF) -->
+        <div id="RightPane" class="col-sm-9">
+            <svg id="gridSVG" width="800" height="500" xmlns="http://www.w3.org/2000/svg"
+                style='background-color:white; border:1px solid black;'>
+
+                <g id="gridRightPane">
+
+                    <defs>
+                        <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5" />
+                        </pattern>
+                        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <rect width="100" height="100" fill="url(#smallGrid)" />
+                            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" id="rectgrid" />
+                </g>
+            </svg>
+        </div>
+        <!-- Grid  ENDS-->
+
+    </div>
+
+    <p id="listofcomponents">
+
+    </p>
+
+    <script src='https://unpkg.com/panzoom@8.7.3/dist/panzoom.min.js'></script>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var count = 1
+        var Root = gridRightPane
+
+        function loadComponents() {
+            var loadon = "LeftPane";
+
+            //Component 1
+            const comp1svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            comp1svg.setAttribute("xlink", "http://www.w3.org/1999/xlink");
+            comp1svg.setAttribute("width", "50");
+            comp1svg.setAttribute("height", "50");
+            const comp1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            comp1.setAttribute("id", "triangle1");
+            comp1.setAttribute("d", "M20 10 0 40 40 40 Z");
+            comp1.setAttribute("fill", "blue");
+            comp1svg.appendChild(comp1);
+            var button1 = document.createElement("button");
+            button1.appendChild(comp1svg);
+            button1.ondblclick = function () { clone_component(triangle1) };
+            document.getElementById(loadon).appendChild(button1);
+
+            //Component 2
+            const comp2svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            comp2svg.setAttribute("xlink", "http://www.w3.org/1999/xlink");
+            comp2svg.setAttribute("width", "70");
+            comp2svg.setAttribute("height", "70");
+            const comp2triangle = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            comp2triangle.setAttribute("d", "M35 15 L15 45 L55 45 Z");
+            comp2triangle.setAttribute("fill", "red");
+
+            const comp2circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            comp2circle.setAttribute("stroke", "red");
+            comp2circle.setAttribute("stroke-width", "4");
+            comp2circle.setAttribute("fill", "none");
+            comp2circle.setAttribute("cx", "35");
+            comp2circle.setAttribute("cy", "35");
+            comp2circle.setAttribute("r", "30");
+
+            const comp2 = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            comp2.setAttribute("id", "comp2");
+            comp2.appendChild(comp2circle)
+            comp2.appendChild(comp2triangle)
+
+            comp2svg.appendChild(comp2);
+            var button2 = document.createElement("button");
+            button2.appendChild(comp2svg);
+            button2.ondblclick = function () { clone_component(comp2) };
+            document.getElementById(loadon).appendChild(button2);
+
+            //Component 3
+            const comp3svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            comp3svg.setAttribute("xlink", "http://www.w3.org/1999/xlink");
+            comp3svg.setAttribute("width", "70");
+            comp3svg.setAttribute("height", "70");
+
+            const c3p1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p3 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p4 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p5 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+            c3p1.setAttribute("d","M0 0 25 0")
+            c3p2.setAttribute("d","M25 -25 100 -100")
+            c3p3.setAttribute("d","M25 25 100 100")
+            c3p4.setAttribute("d","M25 -75 25 75")
+            c3p5.setAttribute("d","M50 70 70 50 90 90 50 70")            
+
+            c3p1.setAttribute("stroke","black");
+            c3p2.setAttribute("stroke","black");
+            c3p3.setAttribute("stroke","black");
+            c3p4.setAttribute("stroke","black");
+            c3p5.setAttribute("stroke","black");
+
+            c3p1.setAttribute("stroke-width","10");
+            c3p2.setAttribute("stroke-width","10");
+            c3p3.setAttribute("stroke-width","10");
+            c3p4.setAttribute("stroke-width","20");
+            c3p5.setAttribute("stroke-width","10");
+
+            c3p1.setAttribute("fill","none");
+            c3p2.setAttribute("fill","none");
+            c3p3.setAttribute("fill","none");
+            c3p4.setAttribute("fill","none");
+            c3p5.setAttribute("fill","black");
+
+            const c3c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            c3c.setAttribute("cx","50");
+            c3c.setAttribute("cy","0");
+            c3c.setAttribute("r","111");
+            c3c.setAttribute("stroke","black");
+            c3c.setAttribute("stroke-width","10");
+            c3c.setAttribute("fill","none");
+
+            const comp3 = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            comp3.setAttribute("id", "comp3");
+            comp3.appendChild(c3p1)
+            comp3.appendChild(c3p2)
+            comp3.appendChild(c3p3)
+            comp3.appendChild(c3p4)
+            comp3.appendChild(c3p5)
+            comp3.appendChild(c3c)
+            comp3.setAttribute("transform","scale(0.3) translate(70,120)")
+
+            comp3svg.appendChild(comp3);
+
+            var button3 = document.createElement("button");
+            button3.appendChild(comp3svg);
+            button3.ondblclick = function () { clone_component(comp3) };
+            document.getElementById(loadon).appendChild(button3);
+        }
+
+        function clone_component(component) {
+            var newComp = component.cloneNode(true)
+            newComp.id = "newComp" + count
+            newComp.ondblclick = ""
+            Root.appendChild(newComp)
+            draggable = new PlainDraggable(document.getElementById('newComp' + count));
+            draggable.snap = { x: { step: 10 }, y: { step: 10 } };
+            count = count + 1
+        }
+
+        function printListofComponents() {
+            var components = document.getElementById("gridRightPane").childNodes;
+            var txt = "<h3>List of Components</h3>";
+            var i;
+            for (i = 0; i < components.length; i++) {
+                if (components[i].nodeName.toLowerCase() == "path" || components[i].nodeName.toLowerCase() == "g") {
+                    txt = txt + components[i].id + "<br />";
+                }
+            }
+
+            document.getElementById("listofcomponents").innerHTML = txt;
+        }
+
+        function changeColor() {
+            $('#triangle1').css({ fill: "yellow" });
+        }
+
+        var element = document.getElementById('gridRightPane')
+        panzoom(element)
+    </script>
+    <script src="plain-draggable.min.js"></script>
+
+
+</body>
+
+</html>
