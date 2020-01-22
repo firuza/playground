@@ -118,7 +118,7 @@
             var txt = "<h3>List of Components</h3>";
             var i;
             for (i = 0; i < components.length; i++) {
-                if (components[i].nodeName.toLowerCase() == "path") {
+                if (components[i].nodeName.toLowerCase() == "path" || components[i].nodeName.toLowerCase() == "g") {
                     txt = txt + components[i].id + "<br />";
                 }
             }
