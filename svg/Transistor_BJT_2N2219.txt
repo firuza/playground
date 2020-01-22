@@ -1,0 +1,50 @@
+            //Component 3
+            const c3p1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p3 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p4 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const c3p5 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+            c3p1.setAttribute("d","M0 0 25 0")
+            c3p2.setAttribute("d","M25 -25 100 -100")
+            c3p3.setAttribute("d","M25 25 100 100")
+            c3p4.setAttribute("d","M25 -75 25 75")
+            c3p5.setAttribute("d","M50 70 70 50 90 90 50 70")            
+
+            c3p1.setAttribute("stroke","black");
+            c3p2.setAttribute("stroke","black");
+            c3p3.setAttribute("stroke","black");
+            c3p4.setAttribute("stroke","black");
+            c3p5.setAttribute("stroke","black");
+
+            c3p1.setAttribute("stroke-width","10");
+            c3p2.setAttribute("stroke-width","10");
+            c3p3.setAttribute("stroke-width","10");
+            c3p4.setAttribute("stroke-width","20");
+            c3p5.setAttribute("stroke-width","10");
+
+            c3p1.setAttribute("fill","none");
+            c3p2.setAttribute("fill","none");
+            c3p3.setAttribute("fill","none");
+            c3p4.setAttribute("fill","none");
+            c3p5.setAttribute("fill","black");
+
+            const c3c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            c3c.setAttribute("cx","50");
+            c3c.setAttribute("cy","0");
+            c3c.setAttribute("r","111");
+            c3c.setAttribute("stroke","black");
+            c3c.setAttribute("stroke-width","10");
+            c3c.setAttribute("fill","none");
+
+            const comp3 = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            comp3.setAttribute("id", "comp3");
+            comp3.setAttribute("ondblclick", "clone_component(comp3)");
+            comp3.appendChild(c3p1)
+            comp3.appendChild(c3p2)
+            comp3.appendChild(c3p3)
+            comp3.appendChild(c3p4)
+            comp3.appendChild(c3p5)
+            comp3.appendChild(c3c)
+            comp3.setAttribute("transform","scale(0.3) translate(100,500)")
+            
