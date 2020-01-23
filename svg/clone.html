@@ -35,7 +35,7 @@
                             <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1" />
                         </pattern>
                     </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" id="rectgrid" />
+                    <rect width="2400" height="1500" fill="url(#grid)" id="rectgrid" transform="matrix(1 0 0 1 -688 -428)"/>
                 </g>
             </svg>
         </div>
@@ -114,11 +114,11 @@
             const c3p4 = document.createElementNS("http://www.w3.org/2000/svg", "path");
             const c3p5 = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-            c3p1.setAttribute("d","M0 0 25 0")
-            c3p2.setAttribute("d","M25 -25 100 -100")
-            c3p3.setAttribute("d","M25 25 100 100")
-            c3p4.setAttribute("d","M25 -75 25 75")
-            c3p5.setAttribute("d","M50 70 70 50 90 90 50 70")            
+            c3p1.setAttribute("d","M0 0 5 0")
+            c3p2.setAttribute("d","M5 -5 20 -20")
+            c3p3.setAttribute("d","M5 5 20 20")
+            c3p4.setAttribute("d","M5 -15 5 15")
+            c3p5.setAttribute("d","M10 14 14 10 18 18 10 14")            
 
             c3p1.setAttribute("stroke","black");
             c3p2.setAttribute("stroke","black");
@@ -126,11 +126,11 @@
             c3p4.setAttribute("stroke","black");
             c3p5.setAttribute("stroke","black");
 
-            c3p1.setAttribute("stroke-width","10");
-            c3p2.setAttribute("stroke-width","10");
-            c3p3.setAttribute("stroke-width","10");
-            c3p4.setAttribute("stroke-width","20");
-            c3p5.setAttribute("stroke-width","10");
+            c3p1.setAttribute("stroke-width","2");
+            c3p2.setAttribute("stroke-width","2");
+            c3p3.setAttribute("stroke-width","2");
+            c3p4.setAttribute("stroke-width","4");
+            c3p5.setAttribute("stroke-width","2");
 
             c3p1.setAttribute("fill","none");
             c3p2.setAttribute("fill","none");
@@ -139,11 +139,11 @@
             c3p5.setAttribute("fill","black");
 
             const c3c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            c3c.setAttribute("cx","50");
+            c3c.setAttribute("cx","10");
             c3c.setAttribute("cy","0");
-            c3c.setAttribute("r","111");
+            c3c.setAttribute("r","22");
             c3c.setAttribute("stroke","black");
-            c3c.setAttribute("stroke-width","10");
+            c3c.setAttribute("stroke-width","3");
             c3c.setAttribute("fill","none");
 
             const comp3 = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -154,7 +154,7 @@
             comp3.appendChild(c3p4)
             comp3.appendChild(c3p5)
             comp3.appendChild(c3c)
-            comp3.setAttribute("transform","scale(0.3) translate(70,120)")
+            comp3.setAttribute("transform","translate(20,25)")
 
             comp3svg.appendChild(comp3);
 
@@ -192,7 +192,14 @@
         }
 
         var element = document.getElementById('gridRightPane')
-        panzoom(element)
+        // panzoom(element)
+        panzoom(element, {
+            beforeMouseDown: function(e) {
+                // allow mouse-down panning only if altKey is down. Otherwise - ignore
+                var shouldIgnore = !e.altKey;
+                return shouldIgnore;
+            }
+        });
     </script>
     <script src="plain-draggable.min.js"></script>
 
