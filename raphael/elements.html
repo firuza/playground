@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>Elements</title>
+</head>
+
+<body>
+
+    <div class="row">
+        <div id="divLeft" class="col-md-3" style="background-color: blanchedalmond;">
+            
+        </div>
+        <div id="divLeft" class="col-md-9" style="background-color:thistle">
+            
+        </div>
+    </div>
+
+    <script src='raphael.js'></script>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+
+        var paper1 = new Raphael(document.getElementById('divLeft'), 50, 50);
+        var element1 = paper1.path("M20 10 L0 40 40 40 Z");
+        element1.attr("fill", "blue");
+
+        var paper2 = new Raphael(document.getElementById('divLeft'), 70, 70);
+        var element2 = paper2.set();
+        element2.push(
+            element2circle = paper2.circle(35, 35, 30),
+            element2path = paper2.path("M35 15 L15 45 L55 45 Z").attr("fill","yellow")
+        );
+        element2.attr({
+            'stroke-width': 2,
+            'stroke': 'red'
+        });
+
+        var paper3 = new Raphael(document.getElementById('divLeft'), 70, 70);
+        var element3 = paper3.set();
+        element3.push(
+            e3p1 = paper3.path("M0 0 5 0"),
+            e3p2 = paper3.path("M5 -5 20 -20"),
+            e3p3 = paper3.path("M5 5 20 20"),
+            e3p4 = paper3.path("M5 -15 5 15"),
+            e3p5 = paper3.path("M10 14 14 10 18 18 10 14").attr("fill","black"),
+            e3c = paper3.circle(10, 0, 22)
+        );
+        element3.attr({
+            'stroke-width': 2,
+            'stroke': 'black'
+        });
+        element3.translate(20,30);
+
+
+
+
+    </script>
+
+</body>
+
+</html>
