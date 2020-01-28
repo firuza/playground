@@ -21,6 +21,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
+        var button1 = document.createElement("button");
+        button1.setAttribute("id", "btn1");
+        button1.setAttribute("onclick","element1.cloneToPaper(paper2)")
+        document.getElementById("divLeft").appendChild(button1);
+
+        var button2 = document.createElement("button");
+        button2.setAttribute("id", "btn2");
+        button2.setAttribute("onclick","element2.cloneToPaper(paper2)")
+        document.getElementById("divLeft").appendChild(button2);
+
+        var button3 = document.createElement("button");
+        button3.setAttribute("id", "btn3");
+        button3.setAttribute("onclick","element3.cloneToPaper(paper2)")
+        document.getElementById("divLeft").appendChild(button3);
 
         // Clone to different paper taken from: http://jsfiddle.net/shamasis/39yTS/
         (function (R) {
@@ -44,7 +58,7 @@
             var paper = paper2 = this;
         });
 
-        Raphael("divLeft", 50, 50, function () {
+        Raphael("btn1", 50, 50, function () {
             var paper = this;
 
             element1 = paper.path("M20 10 L0 40 40 40 Z")
@@ -54,7 +68,7 @@
                 });
         });
 
-        Raphael("divLeft", 70, 70, function () {
+        Raphael("btn2", 70, 70, function () {
             var paper = this;
             element2 = paper.set()
                 .push(
@@ -70,7 +84,7 @@
                 });
         });
 
-        Raphael("divLeft", 70, 70, function () {
+        Raphael("btn3", 70, 70, function () {
             var paper = this;
 
             element3 = paper.set()
