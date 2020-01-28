@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>basic</title>
+</head>
+
+<body>
+
+    <div id="paper1">
+    </div>
+
+
+    <script src='raphael.js'></script>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var paper = new Raphael(document.getElementById('paper1'), 500, 500);
+        var rectangle = paper.rect(140, 50, 250, 50);
+        var ellipse = paper.ellipse(300, 200, 100, 50);
+
+        var circle1 = paper.circle(65, 15, 10);
+        circle1.attr("fill", "#f00");
+
+        var circle2 = paper.circle(15, 80, 10);
+        circle2.attr("fill", "green");
+
+        var circle3 = paper.circle(115, 80, 10);
+        circle3.attr("fill", "blue");
+
+        var triangle = paper.path("M 65 15 L 15 80 115 80 z");
+        triangle.attr({
+                gradient: '90-yellow-green',
+                stroke: '#3b4449',
+                'stroke-width': 2,
+        });
+
+        var group1 = paper.set();
+        group1.push(
+            paper.circle(50, 200, 35),
+            paper.circle(100, 200, 35),
+            paper.path("M 75 185 L 40 220 110 220 z")
+        );
+        group1.attr({
+            'stroke-width': 2,
+        });
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
+
+
+
